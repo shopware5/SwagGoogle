@@ -1,0 +1,28 @@
+{
+    "label": {
+        "de": "Google Services",
+        "en": "Google Services"
+    },
+    "copyright": "(c) by Shopware AG",
+    "license": "MIT",
+    "link": "http://store.shopware.com",
+    "author": "Shopware AG",
+
+    "currentVersion": "2.0.0",
+
+    "changelog": {
+        "de": {
+            "2.0.0": "Als Plugin ausgelagert;"
+        },
+        "en": {
+            "2.0.0": "Extracted as Plugin;"
+        }
+    },
+
+    "compatibility": {
+        "minimumVersion": "4.2.3",
+        "maximumVersion": null,
+        "blacklist": [
+        ]
+    }
+}
