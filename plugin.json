@@ -8,13 +8,15 @@
     "link": "http://store.shopware.com",
     "author": "Shopware AG",
 
-    "currentVersion": "2.0.0",
+    "currentVersion": "2.0.1",
 
     "changelog": {
         "de": {
+            "2.0.1": "SW5 Kompatiblität",
             "2.0.0": "Als Plugin ausgelagert;"
         },
         "en": {
+            "2.0.1": "SW5 compatibility",
             "2.0.0": "Extracted as Plugin;"
         }
     },
