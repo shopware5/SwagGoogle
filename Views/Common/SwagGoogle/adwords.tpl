@@ -11,13 +11,13 @@
             google_conversion_format = "1";
             google_conversion_color = "FFFFFF";
             google_conversion_value = "{$sRealAmount}";
-            google_conversion_label = "oWX2CNbhuFkQ8t__7QM";
+            google_conversion_label = "{$GoogleConversionLabel}";
             google_conversion_currency = "EUR";
             google_remarketing_only = false;
     </script>
     <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
     </script>
     <noscript>
-        <img height=1 width=1 border=0 src="https://www.googleadservices.com/pagead/conversion/{$GoogleConversionID}/?value={$sRealAmount}&currency_code=EUR&label=oWX2CNbhuFkQ8t__7QM&guid=ON&script=0">
+        <img height=1 width=1 border=0 src="https://www.googleadservices.com/pagead/conversion/{$GoogleConversionID}/?value={$sRealAmount}&currency_code=EUR&label={$GoogleConversionLabel}&guid=ON&script=0">
     </noscript>
 {/if}
