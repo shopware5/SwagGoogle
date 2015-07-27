@@ -100,6 +100,11 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
             'value' => null,
             'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
         ));
+        $form->setElement('text', 'conversion_label', array(
+            'label' => 'Google Conversion-Label',
+            'value' => null,
+            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
+        ));
         $form->setElement('checkbox', 'anonymize_ip', array(
             'label' => 'IP-Adresse anonymisieren',
             'value' => true,
@@ -174,6 +179,7 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
 
         if (!empty($config->conversion_code)) {
             $view->GoogleConversionID = $config->conversion_code;
+            $view->GoogleConversionLabel = $config->conversion_label;
             $view->GoogleConversionLanguage = Shopware()->Locale()->getLanguage();
         }
         if (!empty($config->tracking_code)) {
