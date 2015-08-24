@@ -21,7 +21,7 @@
 		{assign var="sAmountTax" value=$sAmountTax-$sAmountNumeric}
 
 		_gaq.push(['_addTrans',
-			"{$sOrderNumber|round}",
+			"{$sOrderNumber}",
 			"{$sShopname|escape:'javascript'}",
 			"{$sAmountNumeric|round:2}",
 			"{$sAmountTax|round:2}",
@@ -34,7 +34,7 @@
         {foreach from=$sBasket.content item=sBasketItem}
             {if !$sBasketItem.modus}
                 _gaq.push(['_addItem',
-                    "{$sOrderNumber|round}",
+                    "{$sOrderNumber}",
                     "{$sBasketItem.ordernumber}",
                     "{$sBasketItem.articlename|escape:'javascript'}",
                     "",
