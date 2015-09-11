@@ -121,6 +121,12 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
             'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
         ));
 
+        $form->setElement('checkbox', 'include_header', array(
+            'label' => 'Tracking-Code im "head"-Bereich inkludieren (Responsive Theme)',
+            'value' => false,
+            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
+        ));
+
         $this->addFormTranslations(
             array(
                 'en_GB' => array(
@@ -140,6 +146,9 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
                     'anonymize_ip' => array(
                         'label' => 'Anonymous IP address'
                     ),
+                    'include_header' => array(
+                        'label' => 'Include the tracking code in the "head" section (Responsive theme)'
+                    )
                 )
             )
         );
@@ -181,11 +190,13 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
             $view->GoogleConversionID = $config->conversion_code;
             $view->GoogleConversionLabel = $config->conversion_label;
             $view->GoogleConversionLanguage = Shopware()->Locale()->getLanguage();
+            $view->GoogleIncludeInHead = $config->include_header;
         }
         if (!empty($config->tracking_code)) {
             $view->GoogleTrackingID = $config->tracking_code;
             $view->GoogleAnonymizeIp = $config->anonymize_ip;
             $view->GoogleTrackingLibrary = $config->trackingLib;
+            $view->GoogleIncludeInHead = $config->include_header;
         }
     }
 }
