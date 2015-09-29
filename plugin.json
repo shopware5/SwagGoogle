@@ -8,16 +8,18 @@
     "link": "http://store.shopware.com",
     "author": "Shopware AG",
 
-    "currentVersion": "2.0.3",
+    "currentVersion": "2.0.4",
 
     "changelog": {
         "de": {
+            "2.0.4": "PT-3836 - Bugfix: Möglichkeit Tracking Code an verschiedenen Stellen einzubinden;",
             "2.0.3": "PT-3637 - Bugfix: Übergabe der Bestellnummer;",
             "2.0.2": "PT-2991 - Bugfix: Adwords Conversions wurden nicht getrackt;",
             "2.0.1": "Shopware 5 Kompatibilität",
             "2.0.0": "Als Plugin ausgelagert;"
         },
         "en": {
+            "2.0.4": "PT-3836 - Bugfix: Possibility to add tracking code at different places;",
             "2.0.3": "PT-3637 - Bugfix: Tranfer of the order number;",
             "2.0.2": "PT-2991 - Bugfix: Adwords Conversions were not tracked;",
             "2.0.1": "SW5 compatibility",
