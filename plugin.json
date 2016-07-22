@@ -8,10 +8,11 @@
     "link": "http://store.shopware.com",
     "author": "Shopware AG",
 
-    "currentVersion": "2.0.4",
+    "currentVersion": "2.0.5",
 
     "changelog": {
         "de": {
+            "2.0.5": "PT-6248 - Shopware 5.2 Kompatibilität und Entfernung des Emotion Templates",
             "2.0.4": "PT-3836 - Bugfix: Möglichkeit Tracking Code an verschiedenen Stellen einzubinden;",
             "2.0.3": "PT-3637 - Bugfix: Übergabe der Bestellnummer;",
             "2.0.2": "PT-2991 - Bugfix: Adwords Conversions wurden nicht getrackt;",
@@ -19,6 +20,7 @@
             "2.0.0": "Als Plugin ausgelagert;"
         },
         "en": {
+            "2.0.5": "PT-6248 - Shopware 5.2 compatibility and remove of the emotion template",
             "2.0.4": "PT-3836 - Bugfix: Possibility to add tracking code at different places;",
             "2.0.3": "PT-3637 - Bugfix: Tranfer of the order number;",
             "2.0.2": "PT-2991 - Bugfix: Adwords Conversions were not tracked;",
