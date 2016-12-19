@@ -119,13 +119,17 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
             'description' => 'Welche Tracking Bibliothek soll benutzt werden? Standardmäßig wird die veraltete Google Analytics verwendet. Der Wechsel zur Universal-Analytics-Bibliothek erfordert, das Sie Ihre Google Analytics Einstellungen aktualisieren. Für mehr Informationen besuchen Sie die offizielle Google-Dokumentation.',
             'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
         ));
-
+        $form->setElement('checkbox', 'include_opt_out_cookie', array(
+            'label' => 'Opt-Out Cookie ermöglichen',
+            'description' => 'Opt-Out Cookie setzen, so dass der Datenfluss nach Google unterbochen werden kann: https://developers.google.com/analytics/devguides/collection/gajs/',
+            'value' => false,
+            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
+        ));
         $form->setElement('checkbox', 'include_header', array(
             'label' => 'Tracking-Code im "head"-Bereich inkludieren (Responsive Theme)',
             'value' => false,
             'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
         ));
-
         $this->addFormTranslations(
             array(
                 'en_GB' => array(
@@ -144,6 +148,10 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
                     ),
                     'anonymize_ip' => array(
                         'label' => 'Anonymous IP address'
+                    ),
+                    'include_opt_out_cookie' => array(
+                        'label' => 'Allow opt-out cookie',
+                        'description' => 'The tracking snippet includes a window property disables the tracking snippet from sending data to Google Analytics: https://developers.google.com/analytics/devguides/collection/gajs/'
                     ),
                     'include_header' => array(
                         'label' => 'Include the tracking code in the "head" section (Responsive theme)'
@@ -184,6 +192,7 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
         if (!empty($config->tracking_code)) {
             $view->GoogleTrackingID = $config->tracking_code;
             $view->GoogleAnonymizeIp = $config->anonymize_ip;
+            $view->GoogleOptOutCookie = $config->include_opt_out_cookie;
             $view->GoogleTrackingLibrary = $config->trackingLib;
             $view->GoogleIncludeInHead = $config->include_header;
         }
