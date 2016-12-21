@@ -6,6 +6,9 @@
  * file that was distributed with this source code.
  */
 
+use Shopware\Models\Config\Element;
+use Shopware\Models\Config\Form;
+
 /**
  * Shopware Google Plugin
  */
@@ -15,7 +18,7 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
      * Returns the version of the plugin as a string
      *
      * @return string
-     * @throws Exception
+     * @throws RunTimeException
      */
     public function getVersion()
     {
@@ -24,7 +27,7 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
         if ($info) {
             return $info['currentVersion'];
         } else {
-            throw new Exception('The plugin has an invalid version file.');
+            throw new RunTimeException('The plugin has an invalid version file.');
         }
     }
 
@@ -47,13 +50,13 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
      */
     public function getInfo()
     {
-        return array(
+        return [
             'version' => $this->getVersion(),
             'label' => $this->getLabel(),
             'name' => 'SwagGoogle',
             'link' => 'http://www.shopware.de',
             'description' => 'Shopware integration for Google Analytics, Universal Analytics and Google Adwords services'
-        );
+        ];
     }
 
     /**
@@ -86,78 +89,78 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
     public function createForm()
     {
         $form = $this->Form();
-        /** @var \Shopware\Models\Config\Form $parent */
-        $parent = $this->Forms()->findOneBy(array('name' => 'Interface'));
+        /** @var Form $parent */
+        $parent = $this->Forms()->findOneBy(['name' => 'Interface']);
         $form->setParent($parent);
-        $form->setElement('text', 'tracking_code', array(
+        $form->setElement('text', 'tracking_code', [
             'label' => 'Google Analytics-ID',
             'value' => null,
-            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
-        ));
-        $form->setElement('text', 'conversion_code', array(
+            'scope' => Element::SCOPE_SHOP
+        ]);
+        $form->setElement('text', 'conversion_code', [
             'label' => 'Google Conversion-ID',
             'value' => null,
-            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
-        ));
-        $form->setElement('text', 'conversion_label', array(
+            'scope' => Element::SCOPE_SHOP
+        ]);
+        $form->setElement('text', 'conversion_label', [
             'label' => 'Google Conversion-Label',
             'value' => null,
-            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
-        ));
-        $form->setElement('checkbox', 'anonymize_ip', array(
+            'scope' => Element::SCOPE_SHOP
+        ]);
+        $form->setElement('checkbox', 'anonymize_ip', [
             'label' => 'IP-Adresse anonymisieren',
             'value' => true,
-            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
-        ));
-        $form->setElement('combo', 'trackingLib', array(
+            'scope' => Element::SCOPE_SHOP
+        ]);
+        $form->setElement('combo', 'trackingLib', [
             'label' => 'Tracking Bibliothek',
             'value' => 'ga',
-            'store' => array(
-                array('ga', 'Google Analytics'),
-                array('ua', 'Universal Analytics'),
-            ),
+            'store' => [
+                ['ga', 'Google Analytics'],
+                ['ua', 'Universal Analytics'],
+            ],
             'description' => 'Welche Tracking Bibliothek soll benutzt werden? Standardmäßig wird die veraltete Google Analytics verwendet. Der Wechsel zur Universal-Analytics-Bibliothek erfordert, das Sie Ihre Google Analytics Einstellungen aktualisieren. Für mehr Informationen besuchen Sie die offizielle Google-Dokumentation.',
-            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
-        ));
-        $form->setElement('checkbox', 'include_opt_out_cookie', array(
+            'scope' => Element::SCOPE_SHOP
+        ]);
+        $form->setElement('checkbox', 'include_opt_out_cookie', [
             'label' => 'Opt-Out Cookie ermöglichen',
             'description' => 'Opt-Out Cookie setzen, so dass der Datenfluss nach Google unterbochen werden kann: https://developers.google.com/analytics/devguides/collection/gajs/',
             'value' => false,
-            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
-        ));
-        $form->setElement('checkbox', 'include_header', array(
+            'scope' => Element::SCOPE_SHOP
+        ]);
+        $form->setElement('checkbox', 'include_header', [
             'label' => 'Tracking-Code im "head"-Bereich inkludieren (Responsive Theme)',
             'value' => false,
-            'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
-        ));
+            'scope' => Element::SCOPE_SHOP
+        ]);
         $this->addFormTranslations(
-            array(
-                'en_GB' => array(
-                    'plugin_form' => array(
+            [
+                'en_GB' => [
+                    'plugin_form' => [
                         'label' => 'Google Services'
-                    ),
-                    'trackingLib' => array(
+                    ],
+                    'trackingLib' => [
                         'label' => 'Tracking library',
                         'description' => 'Tracking library to use. Defaults to legacy Google Analytics. Switching to Universal Analytics requires that you update you settings in your Google Analytics Admin page. Please check Google\'s official documentation for more info.'
-                    ),
-                    'tracking_code' => array(
+                    ],
+                    'tracking_code' => [
                         'label' => 'Google Analytics ID'
-                    ),
-                    'conversion_code' => array(
+                    ],
+                    'conversion_code' => [
                         'label' => 'Google Conversion ID'
-                    ),
-                    'anonymize_ip' => array(
+                    ],
+                    'anonymize_ip' => [
                         'label' => 'Anonymous IP address'
-                    ),
-                    'include_opt_out_cookie' => array(
+                    ],
+                    'include_opt_out_cookie' => [
                         'label' => 'Allow opt-out cookie',
                         'description' => 'The tracking snippet includes a window property disables the tracking snippet from sending data to Google Analytics: https://developers.google.com/analytics/devguides/collection/gajs/'
-                    ),
-                    'include_header' => array(
+                    ],
+                    'include_header' => [
                         'label' => 'Include the tracking code in the "head" section (Responsive theme)'
-                    )
-                )
-            )
+                    ]
+                ]
+            ]
         );
     }
 
@@ -176,25 +179,27 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
         }
 
         $config = $this->Config();
-        if (empty($config->tracking_code) && empty($config->conversion_code)) {
+        $trackingCode = $config->get('tracking_code');
+        $conversionCode = $config->get('conversion_code');
+        if (empty($trackingCode) && empty($conversionCode)) {
             return;
         }
 
-        $view->addTemplateDir(__DIR__.'/Views/Common');
-        $view->addTemplateDir(__DIR__.'/Views/');
+        $view->addTemplateDir(__DIR__ . '/Views/Common');
+        $view->addTemplateDir(__DIR__ . '/Views/');
 
         if (!empty($config->conversion_code)) {
-            $view->GoogleConversionID = $config->conversion_code;
-            $view->GoogleConversionLabel = $config->conversion_label;
-            $view->GoogleConversionLanguage = Shopware()->Locale()->getLanguage();
-            $view->GoogleIncludeInHead = $config->include_header;
+            $view->assign('GoogleConversionID', $config->get('conversion_code'));
+            $view->assign('GoogleConversionLabel', $config->get('conversion_label'));
+            $view->assign('GoogleConversionLanguage', $this->get('locale')->getLanguage());
+            $view->assign('GoogleIncludeInHead', $config->get('include_header'));
         }
         if (!empty($config->tracking_code)) {
-            $view->GoogleTrackingID = $config->tracking_code;
-            $view->GoogleAnonymizeIp = $config->anonymize_ip;
-            $view->GoogleOptOutCookie = $config->include_opt_out_cookie;
-            $view->GoogleTrackingLibrary = $config->trackingLib;
-            $view->GoogleIncludeInHead = $config->include_header;
+            $view->assign('GoogleTrackingID', $config->get('tracking_code'));
+            $view->assign('GoogleAnonymizeIp', $config->get('anonymize_ip'));
+            $view->assign('GoogleOptOutCookie', $config->get('include_opt_out_cookie'));
+            $view->assign('GoogleTrackingLibrary', $config->get('trackingLib'));
+            $view->assign('GoogleIncludeInHead', $config->get('include_header'));
         }
     }
 }
