@@ -174,6 +174,9 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
         $request = $args->getSubject()->Request();
         $view = $args->getSubject()->View();
 
+        $view->addTemplateDir(__DIR__ . '/Views/Common');
+        $view->addTemplateDir(__DIR__ . '/Views/');
+
         if ($request->isXmlHttpRequest()) {
             return;
         }
@@ -184,9 +187,6 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
         if (empty($trackingCode) && empty($conversionCode)) {
             return;
         }
-
-        $view->addTemplateDir(__DIR__ . '/Views/Common');
-        $view->addTemplateDir(__DIR__ . '/Views/');
 
         if (!empty($config->conversion_code)) {
             $view->assign('GoogleConversionID', $config->get('conversion_code'));
