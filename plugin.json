@@ -8,10 +8,11 @@
     "link": "http://store.shopware.com",
     "author": "Shopware AG",
 
-    "currentVersion": "2.0.7",
+    "currentVersion": "2.0.8",
 
-    "changelog": {
+    "changelog": {  
         "de": {
+            "2.0.8": "PT-8543 - Bugfix: Die Template Ordner werden früher registriert um den SmartySecurity Fehler zu verhindern",
             "2.0.7": "PT-7264 - Bugfix: GA-Tracking über ein Cookie unterbinden;",
             "2.0.6": "PT-7264 - Neue Funktion: GA-Tracking über ein Cookie unterbinden: (<a href=\"javascript:gaOptout()\">Klicken um Datenfluss nach Google zu sperren.</a>).",
             "2.0.5": "PT-6248 - Shopware 5.2 Kompatibilität und Entfernung des Emotion Templates",
@@ -22,6 +23,7 @@
             "2.0.0": "Als Plugin ausgelagert;"
         },
         "en": {
+            "2.0.8": "PT-8543 - Bugfix: The template folders are registered earlier to prevent the SmartySecurity error",
             "2.0.7": "PT-7264 - Bugfix: GA-Tracking über ein Cookie unterbinden;",
             "2.0.6": "PT-7264 - New feature: GA-Tracking can be disabled via Cookie: (<a href=\"javascript:gaOptout()\">Click here to opt-out of Google Analytics</a>",
             "2.0.5": "PT-6248 - Shopware 5.2 compatibility and remove of the emotion template",
