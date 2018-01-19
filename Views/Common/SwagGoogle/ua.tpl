@@ -59,7 +59,9 @@
             {/foreach}
             ga('ecommerce:send');
         {/if}
-
+        {if $GoogleOptimizeID}
+            ga('require', '{$GoogleOptimizeID|escape:'javascript'}');
+        {/if}
         ga('send', 'pageview');
     })();
     //]]>
