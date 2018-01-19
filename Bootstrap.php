@@ -107,6 +107,12 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
             'value' => null,
             'scope' => Element::SCOPE_SHOP
         ]);
+        $form->setElement('text', 'optimize_code', [
+            'label' => 'Google Optimize-ID',
+            'value' => null,
+            'description' => 'Um die Funktion von Google Optimize nutzen zu können, muss die Google Universal Analytics Bibliothek genutzt werden.',
+            'scope' => Element::SCOPE_SHOP
+        ]);
         $form->setElement('checkbox', 'anonymize_ip', [
             'label' => 'IP-Adresse anonymisieren',
             'value' => true,
@@ -148,6 +154,10 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
                     ],
                     'conversion_code' => [
                         'label' => 'Google Conversion ID'
+                    ],
+                    'optimize_code' => [
+                        'label' => 'Google Optimize-ID',
+                        'description' => 'Google Universal Analytics libary must be selected to use Google Optimize'
                     ],
                     'anonymize_ip' => [
                         'label' => 'Anonymous IP address'
@@ -196,6 +206,7 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
         }
         if (!empty($config->tracking_code)) {
             $view->assign('GoogleTrackingID', $config->get('tracking_code'));
+            $view->assign('GoogleOptimizeID', $config->get('optimize_code'));
             $view->assign('GoogleAnonymizeIp', $config->get('anonymize_ip'));
             $view->assign('GoogleOptOutCookie', $config->get('include_opt_out_cookie'));
             $view->assign('GoogleTrackingLibrary', $config->get('trackingLib'));
