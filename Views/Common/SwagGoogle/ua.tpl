@@ -15,7 +15,13 @@
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
         {/literal}
 
-        ga('create', "{$GoogleTrackingID|escape:'javascript'}", 'auto');
+        {if $GoogleIncludeMultidomain}
+            ga('create', "{$GoogleTrackingID|escape:'javascript'}", 'auto', {literal}{'allowLinker': true}{/literal});
+            ga('linker:autoLink', ['{$GoogleMultidomainOption|replace:",":"','"}'] );
+        {else}
+            ga('create', "{$GoogleTrackingID|escape:'javascript'}", 'auto');
+        {/if}
+
         {if $GoogleAnonymizeIp}
             ga('set', 'anonymizeIp', true);
         {/if}

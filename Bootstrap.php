@@ -133,6 +133,16 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
             'value' => false,
             'scope' => Element::SCOPE_SHOP
         ]);
+        $form->setElement('checkbox', 'include_multidomain', [
+            'label' => 'Multidomain-Code nutzen',
+            'value' => false,
+            'scope' => Element::SCOPE_SHOP
+        ]);
+        $form->setElement('text', 'multidomain_option', [
+            'label' => 'Multidomain: Weitere Domains (Format: domain1.de, domain2.de)',
+            'value' => null,
+            'scope' => Element::SCOPE_SHOP
+        ]);
         $this->addFormTranslations(
             [
                 'en_GB' => [
@@ -158,6 +168,12 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
                     ],
                     'include_header' => [
                         'label' => 'Include the tracking code in the "head" section (Responsive theme)'
+                    ],
+                    'include_multidomain' => [
+                        'label' => 'Use the multidomain-code'
+                    ],
+                    'multidomain_option' => [
+                        'label' => 'Multidomain: Additional domains (format: domain1.com, domain2.com)'
                     ]
                 ]
             ]
@@ -200,6 +216,8 @@ class Shopware_Plugins_Frontend_SwagGoogle_Bootstrap extends Shopware_Components
             $view->assign('GoogleOptOutCookie', $config->get('include_opt_out_cookie'));
             $view->assign('GoogleTrackingLibrary', $config->get('trackingLib'));
             $view->assign('GoogleIncludeInHead', $config->get('include_header'));
+            $view->assign('GoogleIncludeMultidomain', $config->get('include_multidomain'));
+            $view->assign('GoogleMultidomainOption', $config->get('multidomain_option'));
         }
     }
 }
