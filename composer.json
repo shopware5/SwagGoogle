@@ -1,0 +1,9 @@
+{
+    "name": "shopwareLabs/swag-google",
+    "type": "shopware-plugin",
+    "description": "Plugin that adds google analytics features to Shopware.",
+    "license": "MIT",
+    "extra": {
+        "installer-name": "SwagGoogle"
+    }
+}
