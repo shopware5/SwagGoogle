@@ -4,12 +4,12 @@
     {$smarty.block.parent}
     {if $GoogleIncludeInHead && $GoogleTrackingID}
         {if $GoogleOptOutCookie}
-            {include file="SwagGoogle/optout.tpl"}
+            {include file="frontend/swag_google/optout.tpl"}
         {/if}
         {if $GoogleTrackingLibrary == 'ga'}
-            {include file="SwagGoogle/analytics.tpl"}
+            {include file="frontend/swag_google/analytics.tpl"}
         {else}
-            {include file="SwagGoogle/ua.tpl"}
+            {include file="frontend/swag_google/ua.tpl"}
         {/if}
     {/if}
 {/block}

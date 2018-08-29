@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.5/engine/Shopware/Components/Plugin/schema/config.xsd">
+
+    <elements>
+        <element scope="shop">
+            <name>tracking_code</name>
+            <label lang="de">Google Analytics-ID</label>
+            <label lang="en">Google Analytics ID</label>
+        </element>
+
+        <element scope="shop">
+            <name>conversion_code</name>
+            <label lang="de">Google Conversion-ID</label>
+            <label lang="en">Google Conversion ID</label>
+        </element>
+
+        <element scope="shop">
+            <name>conversion_label</name>
+            <label lang="de">Google Conversion-Label</label>
+            <label lang="en">Google Conversion Label</label>
+        </element>
+
+        <element type="boolean" scope="shop">
+            <name>anonymize_ip</name>
+            <label lang="de">IP-Adresse anonymisieren</label>
+            <label lang="en">Anonymous IP address</label>
+            <value>true</value>
+        </element>
+
+        <element type="select" scope="shop">
+            <name>trackingLib</name>
+            <label lang="de">Tracking Bibliothek</label>
+            <label lang="en">Tracking library</label>
+            <description lang="de">Welche Tracking Bibliothek soll benutzt werden? Standardmäßig wird die veraltete Google Analytics verwendet. Der Wechsel zur Universal-Analytics-Bibliothek erfordert, das Sie Ihre Google Analytics Einstellungen aktualisieren. Für mehr Informationen besuchen Sie die offizielle Google-Dokumentation.</description>
+            <description lang="en">Tracking library to use. Defaults to legacy Google Analytics. Switching to Universal Analytics requires that you update you settings in your Google Analytics Admin page. Please check Google's official documentation for more info.</description>
+            <store>
+                <option>
+                    <value>ga</value>
+                    <label>Google Analytics</label>
+                </option>
+                <option>
+                    <value>ua</value>
+                    <label>Universal Analytics</label>
+                </option>
+            </store>
+        </element>
+
+        <element type="boolean" scope="shop">
+            <name>include_opt_out_cookie</name>
+            <label lang="de">Opt-Out Cookie ermöglichen</label>
+            <label lang="en">Allow opt-out cookie</label>
+            <value>false</value>
+            <description lang="de">Opt-Out Cookie setzen, so dass der Datenfluss nach Google unterbochen werden kann: https://developers.google.com/analytics/devguides/collection/gajs/</description>
+            <description lang="en">The tracking snippet includes a window property disables the tracking snippet from sending data to Google Analytics: https://developers.google.com/analytics/devguides/collection/gajs/</description>
+        </element>
+
+        <element type="boolean" scope="shop">
+            <name>include_header</name>
+            <label lang="de">Tracking-Code im "head"-Bereich inkludieren (Responsive Theme)</label>
+            <label lang="en">Include the tracking code in the "head" section (Responsive theme)</label>
+            <value>false</value>
+        </element>
+        
+    </elements>
+</config>
