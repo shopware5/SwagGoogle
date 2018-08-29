@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.5/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+
+    <label lang="de">Google Services</label>
+    <label lang="en">Google Services</label>
+    <version>3.0.0</version>
+    <copyright>(c) by Shopware AG</copyright>
+    <license>MIT</license>
+    <link>http://store.shopware.com</link>
+    <author>Shopware AG</author>
+    <compatibility minVersion="5.5.0"/>
+
+    <changelog version="3.0.0">
+        <changes lang="de">PT-9556 - Shopware 5.5 Kompatibilität;</changes>
+        <changes lang="en">PT-9556 - Shopware 5.5 compatibility;</changes>
+    </changelog>
+
+    <changelog version="2.1.0">
+        <changes lang="de">PT-8810 - Shopware 5.4 Kompatibilität;</changes>
+        <changes lang="en">PT-8810 - Shopware 5.4 compatibility;</changes>
+    </changelog>
+
+    <changelog version="2.0.8">
+        <changes lang="de">PT-8543 - Bugfix: Die Template Ordner werden früher registriert um den SmartySecurity Fehler zu verhindern;</changes>
+        <changes lang="en">PT-8543 - Bugfix: The template folders are registered earlier to prevent the SmartySecurity error;</changes>
+    </changelog>
+
+    <changelog version="2.0.7">
+        <changes lang="de">PT-7264 - Bugfix: GA-Tracking über ein Cookie unterbinden;</changes>
+        <changes lang="en">PT-7264 - Bugfix: GA-Tracking über ein Cookie unterbinden;</changes>
+    </changelog>
+
+    <changelog version="2.0.6">
+        <changes lang="de">PT-7264 - Neue Funktion: GA-Tracking über ein Cookie unterbinden.</changes>
+        <changes lang="en">PT-7264 - New feature: GA-Tracking can be disabled via Cookie.</changes>
+    </changelog>
+
+    <changelog version="2.0.5">
+        <changes lang="de">PT-6248 - Shopware 5.2 Kompatibilität und Entfernung des Emotion Templates</changes>
+        <changes lang="en">PT-6248 - Shopware 5.2 compatibility and remove of the emotion template</changes>
+    </changelog>
+
+    <changelog version="2.0.4">
+        <changes lang="de">PT-3836 - Bugfix: Möglichkeit Tracking Code an verschiedenen Stellen einzubinden;</changes>
+        <changes lang="en">PT-3836 - Bugfix: Possibility to add tracking code at different places;</changes>
+    </changelog>
+
+    <changelog version="2.0.3">
+        <changes lang="de">PT-3637 - Bugfix: Übergabe der Bestellnummer;</changes>
+        <changes lang="en">PT-3637 - Bugfix: Tranfer of the order number;</changes>
+    </changelog>
+
+    <changelog version="2.0.2">
+        <changes lang="de">PT-2991 - Bugfix: Adwords Conversions wurden nicht getrackt;</changes>
+        <changes lang="en">PT-2991 - Bugfix: Adwords Conversions were not tracked;</changes>
+    </changelog>
+
+    <changelog version="2.0.1">
+        <changes lang="de">Shopware 5 Kompatibilität</changes>
+        <changes lang="en">SW5 compatibility</changes>
+    </changelog>
+
+    <changelog version="2.0.0">
+        <changes lang="de">Als Plugin ausgelagert;</changes>
+        <changes lang="en">Extracted as Plugin;</changes>
+    </changelog>
+</plugin>
