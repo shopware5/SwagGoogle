@@ -12,8 +12,8 @@
     <compatibility minVersion="5.5.0"/>
 
     <changelog version="3.0.0">
-        <changes lang="de">PT-9556 - Shopware 5.5 Kompatibilität;</changes>
-        <changes lang="en">PT-9556 - Shopware 5.5 compatibility;</changes>
+        <changes lang="de">PT-9556 - Shopware 5.5 Kompatibilität und Migration auf das Shopware 5.2 Plugin System;</changes>
+        <changes lang="en">PT-9556 - Shopware 5.5 compatibility and migration to the Shopware 5.2 plugin system;</changes>
     </changelog>
 
     <changelog version="2.1.0">
