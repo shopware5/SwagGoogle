@@ -11,7 +11,8 @@ class SwagGoogle extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'Enlight_Controller_Action_PostDispatchSecure_Frontend' => 'onPostDispatch'
+            'Enlight_Controller_Action_PostDispatchSecure_Frontend' => 'onPostDispatch',
+            'Enlight_Controller_Action_PostDispatchSecure_Widgets' => 'onPostDispatch'
         ];
     }
 
