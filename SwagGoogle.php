@@ -26,14 +26,14 @@ class SwagGoogle extends Plugin
         /** @var Enlight_View_Default $view */
         $view = $args->getSubject()->View();
 
+        $view->addTemplateDir($this->getPath() . '/Resources/views');
+
         if ($request->isXmlHttpRequest()) {
             return;
         }
 
-        $view->addTemplateDir($this->getPath() . '/Resources/views');
-
         $config = $this->getConfig();
-        
+
         if (!empty($config['conversion_code'])) {
             $this->handleConversionCode($view, $config);
         }
