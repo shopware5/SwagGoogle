@@ -4,12 +4,17 @@
 
     <label lang="de">Google Services</label>
     <label lang="en">Google Services</label>
-    <version>3.0.1</version>
+    <version>3.0.2</version>
     <copyright>(c) by Shopware AG</copyright>
     <license>MIT</license>
     <link>http://store.shopware.com</link>
     <author>Shopware AG</author>
     <compatibility minVersion="5.5.0"/>
+
+    <changelog version="3.0.2">
+        <changes lang="de">PT-9940 - Verhindert Smarty-Security Fehler;</changes>
+        <changes lang="en">PT-9940 - Prevents smarty security errors;</changes>
+    </changelog>
 
     <changelog version="3.0.1">
         <changes lang="de">PT-9709 - Verhindert Smarty-Security Fehler;</changes>
