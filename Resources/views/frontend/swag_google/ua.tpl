@@ -13,9 +13,28 @@
             a.src = g;
             m.parentNode.insertBefore(a, m)
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        
+        function providePlugin(a, c) {
+            var b = window[window.GoogleAnalyticsObject || 'ga'];
+            b && b('provide', a, c)
+        }
+        
+        providePlugin('dnt', function(a, c) {
+            var b = c.logStatus,
+                d = !1,
+                e = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+            !e || 'yes' != e && "1" != e || (d = !0);
+            b && a.set(b, d ? 'dnt' : '(not set)');
+            var f = a.get('buildHitTask');
+            a.set('buildHitTask', function(a) {
+                if (d && !b) throw 'dnt';
+                f(a)
+            })
+        });
         {/literal}
 
         ga('create', "{$GoogleTrackingID|escape:'javascript'}", 'auto');
+        ga('require', 'dnt');
         {if $GoogleAnonymizeIp}
             ga('set', 'anonymizeIp', true);
         {/if}
