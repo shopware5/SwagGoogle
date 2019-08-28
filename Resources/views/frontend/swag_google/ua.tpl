@@ -38,7 +38,7 @@
             {assign var="sAmountTax" value=$sAmountTax-$sAmountNumeric}
 
             ga('ecommerce:addTransaction', {
-                'id': '{$sOrderNumber|round}',
+                'id': '{$sOrderNumber}',
                 'affiliation': '{$sShopname|escape:'javascript'}',
                 'revenue': '{$sAmountNumeric|round:2}',
                 'tax': '{$sAmountTax|round:2}',
