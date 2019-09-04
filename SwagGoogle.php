@@ -5,10 +5,28 @@ namespace SwagGoogle;
 use Enlight_Controller_Request_Request;
 use Enlight_View_Default;
 use Shopware\Components\Plugin;
-use Shopware\Components\Privacy\CookieRemoveSubscriber;
+use Shopware\Components\Plugin\Context\ActivateContext;
+use Shopware\Components\Plugin\Context\DeactivateContext;
+use Shopware\Components\Plugin\Context\InstallContext;
+use Shopware\Components\Plugin\Context\UninstallContext;
 
 class SwagGoogle extends Plugin
 {
+    public function activate(ActivateContext $context)
+    {
+        $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
+    }
+
+    public function deactivate(DeactivateContext $context)
+    {
+        $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
+    }
+
+    public function uninstall(UninstallContext $context)
+    {
+        $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
+    }
+
     public static function getSubscribedEvents()
     {
         return [
@@ -33,13 +51,6 @@ class SwagGoogle extends Plugin
             return;
         }
 
-        $bindGoogleAnalytics = $this->bindGoogleAnalytics($request);
-        $view->assign('bindGoogleAnalytics', $bindGoogleAnalytics);
-
-        if (!$bindGoogleAnalytics) {
-            return;
-        }
-
         $config = $this->getConfig();
         if (!empty($config['conversion_code'])) {
             $this->handleConversionCode($view, $config);
@@ -48,31 +59,6 @@ class SwagGoogle extends Plugin
         if (!empty($config['tracking_code'])) {
             $this->handleTrackingCode($view, $config);
         }
-    }
-
-    /**
-     * @param Enlight_Controller_Request_Request $request
-     *
-     * @return bool
-     */
-    private function bindGoogleAnalytics(Enlight_Controller_Request_Request $request)
-    {
-        $shopConfig = $this->container->get('config');
-        $showCookieNote = $shopConfig->get('show_cookie_note');
-
-        if (!$showCookieNote) {
-            return true;
-        }
-
-        if ((int) $shopConfig->get('cookie_note_mode') === CookieRemoveSubscriber::COOKIE_MODE_NOTICE) {
-            return true;
-        }
-
-        if ($request->getCookie('allowCookie')) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
