@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
     var gaProperty = '{$GoogleTrackingID|escape:'javascript'}';
     // Disable tracking if the opt-out cookie exists.
     var disableStr = 'ga-disable-' + gaProperty;
