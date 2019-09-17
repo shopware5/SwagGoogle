@@ -23,6 +23,10 @@
 
             createEcommerceTransaction: false,
 
+            cookieNoteMode: null,
+
+            showCookieNote: null,
+
             orderNumber: null,
 
             affiliation: null,
@@ -48,13 +52,23 @@
             me.applyDataAttributes();
 
             me.cookieValue = me.getCookie();
-            if (me.cookieValue) {
+            if (me.cookieValue || me.evaluateCookieHint()) {
                 me.createLibrary();
                 new GoogleAdds(me.opts);
                 return;
             }
 
             me.createCheckTimer();
+        },
+
+        evaluateCookieHint: function() {
+            var me = this;
+
+            if (!me.opts.showCookieNote) {
+                return true;
+            }
+
+            return me.opts.showCookieNote === 1 && me.opts.cookieNoteMode === 0;
         },
 
         createCheckTimer: function() {
