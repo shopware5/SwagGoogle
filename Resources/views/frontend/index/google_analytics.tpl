@@ -48,6 +48,8 @@
             data-googleOptOutCookie="{$GoogleOptOutCookie}"
             data-googleTrackingLibrary="{$GoogleTrackingLibrary}"
             data-realAmount="{$sRealAmount}"
+            data-showCookieNote="{config name="show_cookie_note"}"
+            data-cookieNoteMode="{config name="cookie_note_mode"}"
             {if $sBasket.content && $sOrderNumber}
                 data-createEcommerceTransaction="1"
                 data-orderNumber="{$sOrderNumber|round}"
