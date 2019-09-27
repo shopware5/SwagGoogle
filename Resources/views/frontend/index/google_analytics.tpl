@@ -7,11 +7,11 @@
                     {foreach from=$sBasket.content item=sBasketItem}
                         {if !$sBasketItem.modus}
                             {
-                                id: '{$sOrderNumber|round}',
+                                id: '{$sOrderNumber}',
                                 name: '{$sBasketItem.articlename|escape:'javascript'}',
                                 sku: '{$sBasketItem.ordernumber}',
                                 price: '{$sBasketItem.priceNumeric|round:2}',
-                                quantity: '{$sBasketItem.quantity|round}'
+                                quantity: '{$sBasketItem.quantity}'
                             },
                         {/if}
                     {/foreach}
@@ -52,7 +52,7 @@
             data-cookieNoteMode="{config name="cookie_note_mode"}"
             {if $sBasket.content && $sOrderNumber}
                 data-createEcommerceTransaction="1"
-                data-orderNumber="{$sOrderNumber|round}"
+                data-orderNumber="{$sOrderNumber}"
                 data-affiliation="{$sShopname|escape:'javascript'}"
                 data-revenue="{$sAmountNumeric|round:2}"
                 data-tax="{$sAmountTax|round:2}"
