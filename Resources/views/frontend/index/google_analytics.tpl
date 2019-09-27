@@ -51,6 +51,11 @@
             data-showCookieNote="{config name="show_cookie_note"}"
             data-cookieNoteMode="{config name="cookie_note_mode"}"
             {if $sBasket.content && $sOrderNumber}
+                {if $sAmountNet}
+                    {assign var="sAmountNumeric" value=$sAmountNet|replace:",":"."}
+                {else}
+                    {assign var="sAmountNumeric" value=$sAmount|replace:",":"."}
+                {/if}
                 data-createEcommerceTransaction="1"
                 data-orderNumber="{$sOrderNumber}"
                 data-affiliation="{$sShopname|escape:'javascript'}"
