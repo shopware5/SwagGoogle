@@ -1,5 +1,5 @@
 {block name="google_analytics_data"}
-    <script type="text/javascript">
+    <script>
         window.basketData = {
             {if $sBasket.content && $sOrderNumber}
                 hasData:true,
