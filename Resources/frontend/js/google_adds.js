@@ -11,7 +11,7 @@
 
         me.addVariables();
 
-        $('<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion_async.js"></script>')
+        $('<script src="https://www.googleadservices.com/pagead/conversion_async.js"></script>')
             .appendTo('body');
 
         $('<noscript></noscript>').append($(img)).appendTo('body');
