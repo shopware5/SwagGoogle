@@ -4,12 +4,17 @@
 
     <label lang="de">Google Services</label>
     <label lang="en">Google Services</label>
-    <version>3.1.0</version>
+    <version>3.1.1</version>
     <copyright>(c) by Shopware AG</copyright>
     <license>MIT</license>
     <link>http://store.shopware.com</link>
     <author>Shopware AG</author>
     <compatibility minVersion="5.5.0" maxVersion="5.99.99"/>
+
+    <changelog version="3.1.1">
+        <changes lang="de">PT-10866 - Problem beim Übertragen vom Warenwert und Artikelnummer behoben;</changes>
+        <changes lang="en">PT-10866 - Fixed problem transferring product value and product order number;</changes>
+    </changelog>
 
     <changelog version="3.1.0">
         <changes lang="de">PT-10785 - Berücksichtigt nun die Cookie-Modus Einstellungen;</changes>
