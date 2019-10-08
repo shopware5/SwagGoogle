@@ -24,7 +24,7 @@
                     'var google_conversion_id="' + me.opts.googleConversionID + '"',
                     'google_conversion_language="' + me.opts.googleConversionLanguage + '"',
                     'google_conversion_value="' + me.opts.realAmount + '"',
-                    'google_conversion_label="' + me.opts.googleConversionLable + '"',
+                    'google_conversion_label="' + me.opts.googleConversionLabel + '"',
                     'google_conversion_currency="' + me.opts.currency + '"',
                     'google_conversion_format="1"',
                     'google_conversion_color = "FFFFFF"',
@@ -50,8 +50,10 @@
                 me.opts.googleConversionID,
                 '/?value=',
                 me.opts.realAmount,
-                '&currency_code=EUR&label=',
-                me.opts.googleConversionLable,
+                '&currency_code=',
+                me.opts.currency,
+                '&label=',
+                me.opts.googleConversionLabel,
                 '&guid=ON&script=0'
             ].join('');
         },
