@@ -39,6 +39,13 @@
             if (me.opts.googleAnonymizeIp) {
                 me.analytics('set', 'anonymizeIp', true);
             }
+
+            if (me.opts.doNotTrack) {
+                me.analytics('require', 'dnt');
+
+                $('<script type="text/javascript" async src="//storage.googleapis.com/outfox/dnt_min.js"></script>')
+                    .append('body');
+            }
         },
 
         sendUniversalECommerce: function() {

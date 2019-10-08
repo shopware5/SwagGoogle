@@ -41,7 +41,7 @@
     <div data-googleAnalytics="true"
         {block name="google_analytics_data-attributes"}
             data-googleConversionID="{$GoogleConversionID}"
-            data-googleConversionLable="{$GoogleConversionLabel}"
+            data-googleConversionLabel="{$GoogleConversionLabel}"
             data-googleConversionLanguage="{$GoogleConversionLanguage}"
             data-googleTrackingID="{$GoogleTrackingID}"
             data-googleAnonymizeIp="{$GoogleAnonymizeIp}"
@@ -62,7 +62,7 @@
                 data-revenue="{$sAmountNumeric|round:2}"
                 data-tax="{$sAmountTax|round:2}"
                 data-shipping="{$sShippingcosts|replace:',':'.'|round:2}"
-                data-currency="{$sBasket.sCurrencyName}",
+                data-currency="{$sBasket.sCurrencyName}"
                 data-city="{$sUserData.billingaddress.city|escape}"
                 data-country="{$sUserData.additional.country.countryen|escape}"
             {/if}

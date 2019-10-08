@@ -5,13 +5,13 @@
         defaults: {
             realAmount: 0.0,
 
+            googleTrackingID: '',
+
             googleConversionID: '',
 
-            googleConversionLable: '',
+            googleConversionLabel: '',
 
             googleConversionLanguage: '',
-
-            googleTrackingID: '',
 
             googleAnonymizeIp: '',
 
@@ -43,22 +43,34 @@
 
             country: null,
 
-            basket: window.basketData
+            basket: window.basketData,
+
+            doNotTrack: false
         },
 
         init: function() {
             var me = this;
 
             me.applyDataAttributes();
+            me.opts.doNotTrack = me.checkDoNotTrack();
 
             me.cookieValue = me.getCookie();
             if (me.cookieValue || me.evaluateCookieHint()) {
                 me.createLibrary();
-                new GoogleAdds(me.opts);
                 return;
             }
 
             me.createCheckTimer();
+        },
+
+        checkDoNotTrack: function() {
+            if (window.doNotTrack || navigator.doNotTrack || navigator.msDoNotTrack || 'msTrackingProtectionEnabled' in window.external) {
+                if (window.doNotTrack == "1" || navigator.doNotTrack === "yes" || navigator.doNotTrack == "1" || navigator.msDoNotTrack == "1" || window.external.msTrackingProtectionEnabled()) {
+                    return true;
+                }
+            }
+
+            return false;
         },
 
         evaluateCookieHint: function() {
