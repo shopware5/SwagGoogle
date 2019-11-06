@@ -54,6 +54,14 @@
             <description lang="de">Opt-Out Cookie setzen, so dass der Datenfluss nach Google unterbochen werden kann: https://developers.google.com/analytics/devguides/collection/gajs/</description>
             <description lang="en">The tracking snippet includes a window property disables the tracking snippet from sending data to Google Analytics: https://developers.google.com/analytics/devguides/collection/gajs/</description>
         </element>
+        <element type="boolean" scope="shop">
+            <name>respect_do_not_track</name>
+            <label lang="de">DoNotTrack beachten</label>
+            <label lang="en">Respect DoNotTrack</label>
+            <description lang="de">DoNotTrack-Einstellung des Users berücksichtigen.</description>
+            <description lang="en">Respect DoNotTrack setting of the user.</description>
+            <value>true</value>
+        </element>
 
         <element type="boolean" scope="shop">
             <name>include_header</name>

@@ -50,6 +50,7 @@
             data-realAmount="{$sRealAmount}"
             data-showCookieNote="{config name="show_cookie_note"}"
             data-cookieNoteMode="{config name="cookie_note_mode"}"
+            data-respectDoNotTrack="{config name='respect_do_not_track'}"
             {if $sBasket.content && $sOrderNumber}
                 {if $sAmountNet}
                     {assign var="sAmountNumeric" value=$sAmountNet|replace:",":"."}
