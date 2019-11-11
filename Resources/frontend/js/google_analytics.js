@@ -26,7 +26,9 @@
                     "var _gaq = _gaq || [];",
                     [
                         "_gaq.push(['_setAccount',",
-                        '"' + me.opts.googleTrackingID + '"',
+                        '"',
+                        me.opts.googleTrackingID,
+                        '"',
                         "]);"
                     ].join(''),
                 ],

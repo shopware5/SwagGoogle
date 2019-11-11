@@ -78,8 +78,8 @@ class SwagGoogle extends Plugin
      */
     private function handleConversionCode(Enlight_View_Default $view, array $config)
     {
-        $view->assign('GoogleConversionID', $config['conversion_code']);
-        $view->assign('GoogleConversionLabel', $config['conversion_label']);
+        $view->assign('GoogleConversionID', trim($config['conversion_code']));
+        $view->assign('GoogleConversionLabel', trim($config['conversion_label']));
         $view->assign('GoogleConversionLanguage', $this->container->get('locale')->getLanguage());
         $view->assign('GoogleIncludeInHead', $config['include_header']);
     }
@@ -90,7 +90,7 @@ class SwagGoogle extends Plugin
      */
     private function handleTrackingCode(Enlight_View_Default $view, array $config)
     {
-        $view->assign('GoogleTrackingID', $config['tracking_code']);
+        $view->assign('GoogleTrackingID', trim($config['tracking_code']));
         $view->assign('GoogleAnonymizeIp', $config['anonymize_ip']);
         $view->assign('GoogleOptOutCookie', $config['include_opt_out_cookie']);
         $view->assign('GoogleTrackingLibrary', $config['trackingLib']);
