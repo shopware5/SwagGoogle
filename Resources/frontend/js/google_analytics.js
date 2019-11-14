@@ -8,6 +8,10 @@
 
         me.opts = opts;
 
+        if (me.opts.doNotTrack) {
+            return;
+        }
+
         me.addHeadScript();
         me.initScript();
     };

@@ -52,15 +52,24 @@
             var me = this;
 
             me.applyDataAttributes();
+
+            me.checkGetCookiePreference();
             me.opts.doNotTrack = me.checkDoNotTrack();
 
-            me.cookieValue = me.getCookie();
-            if (me.cookieValue || me.evaluateCookieHint()) {
+            if (me.isGoogleAllowed() || me.evaluateCookieHint()) {
                 me.createLibrary();
                 return;
             }
 
             me.createCheckTimer();
+        },
+
+        isGoogleAllowed: function() {
+            var me = this;
+
+            me.cookieValue = me.getCookie();
+
+            return me.cookieValue || $.getCookiePreference('__utm');
         },
 
         checkDoNotTrack: function() {
@@ -126,7 +135,20 @@
             }
 
             return null;
-        }
+        },
+
+        /**
+         * Polyfill for older shopware versions
+         */
+        checkGetCookiePreference: function() {
+            if ($.isFunction($.getCookiePreference)) {
+                return;
+            }
+
+            $.getCookiePreference = function() {
+                return false;
+            };
+        },
     });
 
     $(document).ready(function() {

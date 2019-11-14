@@ -4,11 +4,15 @@ namespace SwagGoogle;
 
 use Enlight_Controller_Request_Request;
 use Enlight_View_Default;
+use Shopware\Bundle\CookieBundle\CookieCollection;
+use Shopware\Bundle\CookieBundle\Structs\CookieGroupStruct;
+use Shopware\Bundle\CookieBundle\Structs\CookieStruct;
 use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\DeactivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SwagGoogle extends Plugin
 {
@@ -31,8 +35,21 @@ class SwagGoogle extends Plugin
     {
         return [
             'Enlight_Controller_Action_PostDispatchSecure_Frontend' => 'onPostDispatch',
-            'Enlight_Controller_Action_PostDispatchSecure_Widgets' => 'onPostDispatch'
+            'Enlight_Controller_Action_PostDispatchSecure_Widgets' => 'onPostDispatch',
+            'CookieCollector_Collect_Cookies' => 'addGoogleAnalyticsCookie'
         ];
+    }
+
+    public function addGoogleAnalyticsCookie(): CookieCollection
+    {
+        $collection = new CookieCollection();
+        $collection->add(new CookieStruct(
+            '__utm',
+            'Google Analytics',
+            CookieGroupStruct::STATISTICS
+        ));
+
+        return $collection;
     }
 
     /**
