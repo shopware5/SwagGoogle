@@ -4,12 +4,23 @@
 
     <label lang="de">Google Services</label>
     <label lang="en">Google Services</label>
-    <version>3.1.2</version>
+    <version>3.1.3</version>
     <copyright>(c) by Shopware AG</copyright>
     <license>MIT</license>
     <link>http://store.shopware.com</link>
     <author>Shopware AG</author>
     <compatibility minVersion="5.5.0" maxVersion="5.99.99"/>
+
+    <changelog version="3.1.3">
+        <changes lang="de">
+            PT-10947 - Verhindert Leerzeichen am Ende der Google ID;
+            PT-11004 - Behebt Fehler im Javascript;
+        </changes>
+        <changes lang="en">
+            PT-10947 - Prevents spaces at the end of the Google ID;
+            PT-11004 - Fixes javascript error;
+        </changes>
+    </changelog>
 
     <changelog version="3.1.2">
         <changes lang="de">PT-10877 - Fehler mit falscher Conversion auf jeder Seite behoben.</changes>
