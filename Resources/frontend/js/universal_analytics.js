@@ -35,7 +35,16 @@
         startUniversalAnalytics: function() {
             var me = this;
 
-            me.analytics('create', me.opts.googleTrackingID, 'auto');
+            var createConfig = {
+                'trackingId': me.opts.googleTrackingID,
+                'cookieDomain': 'auto'
+            };
+
+            if(me.opts.googleWithoutCookies) {
+                createConfig.storage = 'none';
+            }
+
+            me.analytics('create', createConfig);
             if (me.opts.googleAnonymizeIp) {
                 me.analytics('set', 'anonymizeIp', true);
             }

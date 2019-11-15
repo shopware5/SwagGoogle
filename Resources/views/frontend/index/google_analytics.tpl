@@ -47,6 +47,7 @@
             data-googleAnonymizeIp="{$GoogleAnonymizeIp}"
             data-googleOptOutCookie="{$GoogleOptOutCookie}"
             data-googleTrackingLibrary="{$GoogleTrackingLibrary}"
+            data-googleWithoutCookies="{$GoogleWithoutCookies}"
             data-realAmount="{$sRealAmount}"
             data-showCookieNote="{config name="show_cookie_note"}"
             data-cookieNoteMode="{config name="cookie_note_mode"}"

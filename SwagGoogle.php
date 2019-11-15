@@ -95,5 +95,6 @@ class SwagGoogle extends Plugin
         $view->assign('GoogleOptOutCookie', $config['include_opt_out_cookie']);
         $view->assign('GoogleTrackingLibrary', $config['trackingLib']);
         $view->assign('GoogleIncludeInHead', $config['include_header']);
+        $view->assign('GoogleWithoutCookies', $config['without_cookies']);
     }
 }

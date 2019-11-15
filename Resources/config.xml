@@ -61,6 +61,13 @@
             <label lang="en">Include the tracking code in the "head" section (Responsive theme)</label>
             <value>false</value>
         </element>
+
+        <element type="boolean" scope="shop">
+            <name>without_cookies</name>
+            <label lang="de">Tracking ohne Cookies (nur Universal Analytics)</label>
+            <label lang="en">Tracking without cookies (only Universal Analytics)</label>
+            <value>false</value>
+        </element>
         
     </elements>
 </config>

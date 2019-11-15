@@ -21,6 +21,8 @@
 
             googleOptOutCookie: '',
 
+            googleWithoutCookies: false,
+
             createEcommerceTransaction: false,
 
             cookieNoteMode: null,
