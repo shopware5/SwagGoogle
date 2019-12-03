@@ -12,7 +12,6 @@ use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\DeactivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SwagGoogle extends Plugin
 {
@@ -40,18 +39,6 @@ class SwagGoogle extends Plugin
         ];
     }
 
-    public function addGoogleAnalyticsCookie(): CookieCollection
-    {
-        $collection = new CookieCollection();
-        $collection->add(new CookieStruct(
-            '__utm',
-            'Google Analytics',
-            CookieGroupStruct::STATISTICS
-        ));
-
-        return $collection;
-    }
-
     /**
      * @param \Enlight_Event_EventArgs $args
      */
@@ -76,6 +63,44 @@ class SwagGoogle extends Plugin
         if (!empty($config['tracking_code'])) {
             $this->handleTrackingCode($view, $config);
         }
+    }
+
+    /**
+     * @return CookieCollection
+     */
+    public function addGoogleAnalyticsCookie()
+    {
+        $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName(
+            'SwagGoogle',
+            $this->container->get('shop')
+        );
+
+        $collection = new CookieCollection();
+        $collection->add($this->getCookieStruct($config['trackingLib']));
+
+        return $collection;
+    }
+
+    /**
+     * @return CookieStruct
+     */
+    private function getCookieStruct(string $usedLibraryKey)
+    {
+        if ($usedLibraryKey === 'ga') {
+            return new CookieStruct(
+                '__utm',
+                '/^__utm.*$/',
+                'Google Analytics',
+                CookieGroupStruct::STATISTICS
+            );
+        }
+
+        return new CookieStruct(
+            '_ga',
+            '/(^_g(a|at|id)$)|AMP_TOKEN|^_gac_.*$/',
+            'Google Analytics',
+            CookieGroupStruct::STATISTICS
+        );
     }
 
     /**

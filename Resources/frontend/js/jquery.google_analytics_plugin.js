@@ -43,8 +43,6 @@
 
             country: null,
 
-            basket: window.basketData,
-
             doNotTrack: false
         },
 
@@ -69,7 +67,7 @@
 
             me.cookieValue = me.getCookie();
 
-            return me.cookieValue || $.getCookiePreference('__utm');
+            return me.cookieValue || $.getCookiePreference(me.getCookieKey());
         },
 
         checkDoNotTrack: function() {
@@ -101,8 +99,7 @@
         onCheckCookie: function() {
             var me = this;
 
-            me.cookieValue = me.getCookie();
-            if (me.cookieValue) {
+            if (me.isGoogleAllowed()) {
                 window.clearInterval(me.interval);
                 me.createLibrary();
             }
@@ -148,6 +145,14 @@
             $.getCookiePreference = function() {
                 return false;
             };
+        },
+
+        getCookieKey: function() {
+            if (this.opts.googleTrackingLibrary === 'ga') {
+                return '__utm'
+            }
+
+            return '_ga';
         },
     });
 
