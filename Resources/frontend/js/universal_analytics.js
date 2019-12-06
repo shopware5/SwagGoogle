@@ -35,7 +35,7 @@
         startUniversalAnalytics: function() {
             var me = this;
 
-            me.analytics('create', me.opts.googleTrackingID, 'auto');
+            me.analytics('create', me.opts.googleTrackingID,  {'cookieDomain': 'none'});
             if (me.opts.googleAnonymizeIp) {
                 me.analytics('set', 'anonymizeIp', true);
             }
@@ -62,7 +62,7 @@
         addUniversalTransaction: function() {
             var me = this;
 
-            if (!me.opts.basket.hasData) {
+            if (!window.basketData.hasData) {
                 return;
             }
 

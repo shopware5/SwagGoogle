@@ -8,6 +8,10 @@
 
         me.opts = opts;
 
+        if (me.opts.doNotTrack) {
+            return;
+        }
+
         me.addHeadScript();
         me.initScript();
     };
@@ -38,13 +42,14 @@
                 script.push("_gaq.push(['_gat._anonymizeIp']);");
             }
 
-            if (me.opts.basket.hasData) {
+            if (window.basketData.hasData) {
                 me.addTransaction(script);
                 me.addTransactionData(script);
                 new GoogleAdds(me.opts);
                 script.push("_gaq.push(['_trackTrans']);");
             }
 
+            script.push("_gaq.push(['_setDomainName', 'none']);");
             script.push("_gaq.push(['_trackPageview']);");
 
             entity = [

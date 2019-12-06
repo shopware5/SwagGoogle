@@ -43,8 +43,6 @@
 
             country: null,
 
-            basket: window.basketData,
-
             doNotTrack: false
         },
 
@@ -52,15 +50,24 @@
             var me = this;
 
             me.applyDataAttributes();
+
+            me.checkGetCookiePreference();
             me.opts.doNotTrack = me.checkDoNotTrack();
 
-            me.cookieValue = me.getCookie();
-            if (me.cookieValue || me.evaluateCookieHint()) {
+            if (me.isGoogleAllowed() || me.evaluateCookieHint()) {
                 me.createLibrary();
                 return;
             }
 
             me.createCheckTimer();
+        },
+
+        isGoogleAllowed: function() {
+            var me = this;
+
+            me.cookieValue = me.getCookie();
+
+            return me.cookieValue || $.getCookiePreference(me.getCookieKey());
         },
 
         checkDoNotTrack: function() {
@@ -92,8 +99,7 @@
         onCheckCookie: function() {
             var me = this;
 
-            me.cookieValue = me.getCookie();
-            if (me.cookieValue) {
+            if (me.isGoogleAllowed()) {
                 window.clearInterval(me.interval);
                 me.createLibrary();
             }
@@ -126,7 +132,28 @@
             }
 
             return null;
-        }
+        },
+
+        /**
+         * Polyfill for older shopware versions
+         */
+        checkGetCookiePreference: function() {
+            if ($.isFunction($.getCookiePreference)) {
+                return;
+            }
+
+            $.getCookiePreference = function() {
+                return false;
+            };
+        },
+
+        getCookieKey: function() {
+            if (this.opts.googleTrackingLibrary === 'ga') {
+                return '__utm'
+            }
+
+            return '_ga';
+        },
     });
 
     $(document).ready(function() {

@@ -4,6 +4,9 @@ namespace SwagGoogle;
 
 use Enlight_Controller_Request_Request;
 use Enlight_View_Default;
+use Shopware\Bundle\CookieBundle\CookieCollection;
+use Shopware\Bundle\CookieBundle\Structs\CookieGroupStruct;
+use Shopware\Bundle\CookieBundle\Structs\CookieStruct;
 use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\DeactivateContext;
@@ -31,7 +34,8 @@ class SwagGoogle extends Plugin
     {
         return [
             'Enlight_Controller_Action_PostDispatchSecure_Frontend' => 'onPostDispatch',
-            'Enlight_Controller_Action_PostDispatchSecure_Widgets' => 'onPostDispatch'
+            'Enlight_Controller_Action_PostDispatchSecure_Widgets' => 'onPostDispatch',
+            'CookieCollector_Collect_Cookies' => 'addGoogleAnalyticsCookie'
         ];
     }
 
@@ -59,6 +63,44 @@ class SwagGoogle extends Plugin
         if (!empty($config['tracking_code'])) {
             $this->handleTrackingCode($view, $config);
         }
+    }
+
+    /**
+     * @return CookieCollection
+     */
+    public function addGoogleAnalyticsCookie()
+    {
+        $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName(
+            'SwagGoogle',
+            $this->container->get('shop')
+        );
+
+        $collection = new CookieCollection();
+        $collection->add($this->getCookieStruct($config['trackingLib']));
+
+        return $collection;
+    }
+
+    /**
+     * @return CookieStruct
+     */
+    private function getCookieStruct(string $usedLibraryKey)
+    {
+        if ($usedLibraryKey === 'ga') {
+            return new CookieStruct(
+                '__utm',
+                '/^__utm.*$/',
+                'Google Analytics',
+                CookieGroupStruct::STATISTICS
+            );
+        }
+
+        return new CookieStruct(
+            '_ga',
+            '/(^_g(a|at|id)$)|AMP_TOKEN|^_gac_.*$/',
+            'Google Analytics',
+            CookieGroupStruct::STATISTICS
+        );
     }
 
     /**
