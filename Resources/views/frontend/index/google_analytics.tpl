@@ -17,7 +17,8 @@
                     {/foreach}
                 ],
             {else}
-                hasData: false
+                hasData: false,
+                data:[]
             {/if}
         };
     </script>

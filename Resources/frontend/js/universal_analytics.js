@@ -85,7 +85,7 @@
         addUniversalECommerceItems: function() {
             var me = this;
 
-            $.each(me.opts.basket.data, function(index, item) {
+            $.each(window.basketData.data, function(index, item) {
                 me.analytics('ecommerce:addItem', item);
             });
         },
