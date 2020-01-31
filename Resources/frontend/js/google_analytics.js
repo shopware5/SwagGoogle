@@ -84,7 +84,7 @@
         addTransactionData: function(script) {
             var me = this, itemString;
 
-            $.each(me.opts.basket.data, function(index, item) {
+            $.each(window.basketData.data, function(index, item) {
                 itemString = [
                     '"' + me.opts.orderNumber + '"',
                     '"' + item.sku + '"',
