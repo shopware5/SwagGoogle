@@ -76,7 +76,7 @@ class SwagGoogle extends Plugin
         );
 
         $collection = new CookieCollection();
-        $collection->add($this->getCookieStruct($config['trackingLib']));
+        $collection->add($this->getCookieStruct($config['trackingLib'] ?? 'ua'));
 
         return $collection;
     }

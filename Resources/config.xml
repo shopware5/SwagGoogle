@@ -32,6 +32,7 @@
             <name>trackingLib</name>
             <label lang="de">Tracking Bibliothek</label>
             <label lang="en">Tracking library</label>
+            <value>ua</value>
             <description lang="de">Welche Tracking Bibliothek soll benutzt werden? Standardmäßig wird die veraltete Google Analytics verwendet. Der Wechsel zur Universal-Analytics-Bibliothek erfordert, das Sie Ihre Google Analytics Einstellungen aktualisieren. Für mehr Informationen besuchen Sie die offizielle Google-Dokumentation.</description>
             <description lang="en">Tracking library to use. Defaults to legacy Google Analytics. Switching to Universal Analytics requires that you update you settings in your Google Analytics Admin page. Please check Google's official documentation for more info.</description>
             <store>
@@ -44,6 +45,7 @@
                     <label>Universal Analytics</label>
                 </option>
             </store>
+
         </element>
 
         <element type="boolean" scope="shop">
@@ -61,6 +63,6 @@
             <label lang="en">Include the tracking code in the "head" section (Responsive theme)</label>
             <value>false</value>
         </element>
-        
+
     </elements>
 </config>
