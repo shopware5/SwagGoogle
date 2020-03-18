@@ -1,4 +1,11 @@
 <?php
+/**
+ * (c) shopware AG <info@shopware.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ */
 
 namespace SwagGoogle;
 
@@ -35,13 +42,10 @@ class SwagGoogle extends Plugin
         return [
             'Enlight_Controller_Action_PostDispatchSecure_Frontend' => 'onPostDispatch',
             'Enlight_Controller_Action_PostDispatchSecure_Widgets' => 'onPostDispatch',
-            'CookieCollector_Collect_Cookies' => 'addGoogleAnalyticsCookie'
+            'CookieCollector_Collect_Cookies' => 'addGoogleAnalyticsCookie',
         ];
     }
 
-    /**
-     * @param \Enlight_Event_EventArgs $args
-     */
     public function onPostDispatch(\Enlight_Event_EventArgs $args)
     {
         /** @var Enlight_Controller_Request_Request $request */
@@ -76,15 +80,18 @@ class SwagGoogle extends Plugin
         );
 
         $collection = new CookieCollection();
-        $collection->add($this->getCookieStruct($config['trackingLib'] ?? 'ua'));
+        $trackingLib = isset($config['trackingLib']) ? $config['trackingLib'] : 'ua';
+        $collection->add($this->getCookieStruct($trackingLib));
 
         return $collection;
     }
 
     /**
+     * @param string $usedLibraryKey
+     *
      * @return CookieStruct
      */
-    private function getCookieStruct(string $usedLibraryKey)
+    private function getCookieStruct($usedLibraryKey)
     {
         if ($usedLibraryKey === 'ga') {
             return new CookieStruct(
@@ -109,15 +116,10 @@ class SwagGoogle extends Plugin
     private function getConfig()
     {
         $shop = $shop = $this->container->get('shop');
-        $configReader = $this->container->get('shopware.plugin.cached_config_reader');
 
-        return $configReader->getByPluginName($this->getName(), $shop);
+        return $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName(), $shop);
     }
 
-    /**
-     * @param Enlight_View_Default $view
-     * @param array                $config
-     */
     private function handleConversionCode(Enlight_View_Default $view, array $config)
     {
         $view->assign('GoogleConversionID', trim($config['conversion_code']));
@@ -126,10 +128,6 @@ class SwagGoogle extends Plugin
         $view->assign('GoogleIncludeInHead', $config['include_header']);
     }
 
-    /**
-     * @param Enlight_View_Default $view
-     * @param array                $config
-     */
     private function handleTrackingCode(Enlight_View_Default $view, array $config)
     {
         $view->assign('GoogleTrackingID', trim($config['tracking_code']));
