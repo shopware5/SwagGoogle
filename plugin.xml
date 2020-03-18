@@ -4,12 +4,17 @@
 
     <label lang="de">Google Services</label>
     <label lang="en">Google Services</label>
-    <version>3.1.5</version>
+    <version>3.1.6</version>
     <copyright>(c) by Shopware AG</copyright>
     <license>MIT</license>
     <link>http://store.shopware.com</link>
     <author>Shopware AG</author>
     <compatibility minVersion="5.5.0" maxVersion="5.99.99"/>
+
+    <changelog version="3.1.6">
+        <changes lang="de">PT-11327 - Installationsprozess optimiert;</changes>
+        <changes lang="en">PT-11327 - Optimizes installation process;</changes>
+    </changelog>
 
     <changelog version="3.1.5">
         <changes lang="de">PT-11243 - Behebt Fehler im Conversion Tracking;</changes>
