@@ -4,12 +4,17 @@
 
     <label lang="de">Google Services</label>
     <label lang="en">Google Services</label>
-    <version>3.1.6</version>
+    <version>3.1.7</version>
     <copyright>(c) by Shopware AG</copyright>
     <license>MIT</license>
     <link>http://store.shopware.com</link>
     <author>Shopware AG</author>
     <compatibility minVersion="5.5.0" maxVersion="5.99.99"/>
+
+    <changelog version="3.1.7">
+        <changes lang="de">PT-12131 - Shopware 5.7 und PHP8 Kompatibilität;</changes>
+        <changes lang="en">PT-12131 - Shopware 5.7 and PHP8 compatibility;</changes>
+    </changelog>
 
     <changelog version="3.1.6">
         <changes lang="de">PT-11327 - Installationsprozess optimiert;</changes>
@@ -116,4 +121,8 @@
         <changes lang="de">Als Plugin ausgelagert;</changes>
         <changes lang="en">Extracted as Plugin;</changes>
     </changelog>
+
+    <description lang="de">Mit diesem Plugin haben Sie alle Aktivitäten Ihres Shops immer im Blick. Die "Google Integration" ermöglicht es Ihnen, Google Analytics, Google Universal Analytics und das Conversiontracking mit nur einem Plugin einzubinden.</description>
+    <description lang="en">With this plugin, you have all the activites of your store in view. "Google Integration" allows you, to take advantage of Google Analytics, google universal analytics as well as the conversion tracking in your shop.</description>
+
 </plugin>
