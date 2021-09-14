@@ -1,0 +1,36 @@
+variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: "/certs"
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_USER: app
+    MYSQL_PASSWORD: app
+    MYSQL_DATABASE: shopware
+    WEB_DOCUMENT_ROOT: $CI_PROJECT_DIR/
+    GIT_STRATEGY: clone
+    SHOPWARE_ENV: swaggoogletest
+    CHECKOUT_SHOPWARE_BRANCH: "5.7"
+    PLUGIN_NAME: SwagGoogle
+
+stages:
+    - Code Analysis
+
+PHP analyze:
+    stage: Code Analysis
+    image: gitlab.shopware.com:5005/shopware/5/product/image/continuous:7.4
+    services:
+        -   name: mysql:5.7
+            alias: mysql
+    before_script:
+        - zip -rq plugin.zip .
+        - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.shopware.com/shopware/5/product/shopware.git shopware --depth=1 -b ${CHECKOUT_SHOPWARE_BRANCH}
+        - unzip -q plugin.zip -d shopware/custom/plugins/${PLUGIN_NAME}
+        - cd shopware
+        - cp .env.dist .env
+        - make init
+        - php bin/console sw:warm:http:cache
+        - /entrypoint supervisord &>/dev/null &
+    script:
+        - cd custom/plugins/${PLUGIN_NAME}
+        - make fix-cs-dry
+        - make phpstan

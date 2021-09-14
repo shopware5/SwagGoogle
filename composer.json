@@ -1,5 +1,5 @@
 {
-    "name": "shopwareLabs/swag-google",
+    "name": "shopware-labs/swag-google",
     "type": "shopware-plugin",
     "description": "Plugin that adds google analytics features to Shopware.",
     "license": "MIT",
