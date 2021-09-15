@@ -11,6 +11,11 @@
     <author>Shopware AG</author>
     <compatibility minVersion="5.5.0" maxVersion="5.99.99"/>
 
+    <changelog version="REPLACE_GLOBAL_WITH_NEXT_VERSION (4.0.0)">
+        <changes lang="de">PT-10770 - Composer 2 Kompatibilität;</changes>
+        <changes lang="en">PT-10770 - Composer 2 compatibility;</changes>
+    </changelog>
+
     <changelog version="3.1.7">
         <changes lang="de">PT-12131 - Shopware 5.7 und PHP8 Kompatibilität;</changes>
         <changes lang="en">PT-12131 - Shopware 5.7 and PHP8 compatibility;</changes>

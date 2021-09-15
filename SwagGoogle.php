@@ -15,10 +15,14 @@ use Shopware\Bundle\CookieBundle\CookieCollection;
 use Shopware\Bundle\CookieBundle\Structs\CookieGroupStruct;
 use Shopware\Bundle\CookieBundle\Structs\CookieStruct;
 use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Configuration\CachedReader;
+use Shopware\Components\Plugin\Configuration\ReaderInterface;
 use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\DeactivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
+use Shopware\Models\Shop\Shop;
+use Zend_Locale as Locale;
 
 class SwagGoogle extends Plugin
 {
@@ -46,12 +50,15 @@ class SwagGoogle extends Plugin
         ];
     }
 
-    public function onPostDispatch(\Enlight_Event_EventArgs $args)
+    public function onPostDispatch(\Enlight_Event_EventArgs $args): void
     {
+        $controller = $args->get('subject');
+
         /** @var Enlight_Controller_Request_Request $request */
-        $request = $args->getSubject()->Request();
+        $request = $controller->Request();
+
         /** @var Enlight_View_Default $view */
-        $view = $args->getSubject()->View();
+        $view = $controller->View();
 
         $view->addTemplateDir($this->getPath() . '/Resources/views');
 
@@ -74,10 +81,7 @@ class SwagGoogle extends Plugin
      */
     public function addGoogleAnalyticsCookie()
     {
-        $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName(
-            'SwagGoogle',
-            $this->container->get('shop')
-        );
+        $config = $this->getConfig();
 
         $collection = new CookieCollection();
         $trackingLib = isset($config['trackingLib']) ? $config['trackingLib'] : 'ua';
@@ -110,25 +114,35 @@ class SwagGoogle extends Plugin
         );
     }
 
-    /**
-     * @return array
-     */
-    private function getConfig()
+    private function getConfig(): array
     {
-        $shop = $shop = $this->container->get('shop');
+        $shop = $this->container->get('shop');
+        if (!$shop instanceof Shop) {
+            throw new \RuntimeException('Shop not found');
+        }
 
-        return $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName(), $shop);
+        $config = $this->container->get(CachedReader::class);
+        if (!$config instanceof ReaderInterface) {
+            throw new \RuntimeException('CachedConfigReader not found');
+        }
+
+        return $config->getByPluginName($this->getName(), $shop->getId());
     }
 
-    private function handleConversionCode(Enlight_View_Default $view, array $config)
+    private function handleConversionCode(Enlight_View_Default $view, array $config): void
     {
+        $locale = $this->container->get('locale');
+        if (!$locale instanceof Locale) {
+            throw new \RuntimeException('Locale not found');
+        }
+
         $view->assign('GoogleConversionID', trim($config['conversion_code']));
         $view->assign('GoogleConversionLabel', trim($config['conversion_label']));
-        $view->assign('GoogleConversionLanguage', $this->container->get('locale')->getLanguage());
+        $view->assign('GoogleConversionLanguage', $locale->getLanguage());
         $view->assign('GoogleIncludeInHead', $config['include_header']);
     }
 
-    private function handleTrackingCode(Enlight_View_Default $view, array $config)
+    private function handleTrackingCode(Enlight_View_Default $view, array $config): void
     {
         $view->assign('GoogleTrackingID', trim($config['tracking_code']));
         $view->assign('GoogleAnonymizeIp', $config['anonymize_ip']);
