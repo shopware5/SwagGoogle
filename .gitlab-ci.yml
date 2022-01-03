@@ -12,11 +12,17 @@ variables:
     CHECKOUT_SHOPWARE_BRANCH: "5.7"
     PLUGIN_NAME: SwagGoogle
 
+default:
+  tags:
+    - t3.nano
+
 stages:
     - Code Analysis
 
 PHP analyze:
     stage: Code Analysis
+    tags:
+      - t3.medium
     image: gitlab.shopware.com:5005/shopware/5/product/image/continuous:7.4
     services:
         -   name: mysql:5.7
