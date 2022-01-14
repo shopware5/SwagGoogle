@@ -2,6 +2,6 @@ parameters:
     level: 8
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
-    excludes_analyse:
+    excludePaths:
         - .githooks
         - vendor
