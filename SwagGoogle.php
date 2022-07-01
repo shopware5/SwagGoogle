@@ -114,6 +114,9 @@ class SwagGoogle extends Plugin
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function getConfig(): array
     {
         $shop = $this->container->get('shop');
@@ -129,6 +132,9 @@ class SwagGoogle extends Plugin
         return $config->getByPluginName($this->getName(), $shop->getId());
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     private function handleConversionCode(Enlight_View_Default $view, array $config): void
     {
         $locale = $this->container->get('locale');
@@ -142,6 +148,9 @@ class SwagGoogle extends Plugin
         $view->assign('GoogleIncludeInHead', $config['include_header']);
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     private function handleTrackingCode(Enlight_View_Default $view, array $config): void
     {
         $view->assign('GoogleTrackingID', trim($config['tracking_code']));

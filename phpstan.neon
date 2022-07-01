@@ -1,7 +1,8 @@
 parameters:
     level: 8
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
+    reportUnmatchedIgnoredErrors: true
+    bootstrapFiles:
+        - ../../../tests/phpstan-dba-bootstrap.php
     excludePaths:
         - .githooks
         - vendor

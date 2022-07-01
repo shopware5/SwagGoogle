@@ -1,2 +1,3 @@
 vendor
 .psh.yml
+.php-cs-fixer.cache
