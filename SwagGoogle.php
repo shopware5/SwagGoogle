@@ -9,8 +9,6 @@
 
 namespace SwagGoogle;
 
-use Enlight_Controller_Request_Request;
-use Enlight_View_Default;
 use Shopware\Bundle\CookieBundle\CookieCollection;
 use Shopware\Bundle\CookieBundle\Structs\CookieGroupStruct;
 use Shopware\Bundle\CookieBundle\Structs\CookieStruct;
@@ -54,10 +52,10 @@ class SwagGoogle extends Plugin
     {
         $controller = $args->get('subject');
 
-        /** @var Enlight_Controller_Request_Request $request */
+        /** @var \Enlight_Controller_Request_Request $request */
         $request = $controller->Request();
 
-        /** @var Enlight_View_Default $view */
+        /** @var \Enlight_View_Default $view */
         $view = $controller->View();
 
         $view->addTemplateDir($this->getPath() . '/Resources/views');
@@ -135,7 +133,7 @@ class SwagGoogle extends Plugin
     /**
      * @param array<string, mixed> $config
      */
-    private function handleConversionCode(Enlight_View_Default $view, array $config): void
+    private function handleConversionCode(\Enlight_View_Default $view, array $config): void
     {
         $locale = $this->container->get('locale');
         if (!$locale instanceof Locale) {
@@ -151,7 +149,7 @@ class SwagGoogle extends Plugin
     /**
      * @param array<string, mixed> $config
      */
-    private function handleTrackingCode(Enlight_View_Default $view, array $config): void
+    private function handleTrackingCode(\Enlight_View_Default $view, array $config): void
     {
         $view->assign('GoogleTrackingID', trim($config['tracking_code']));
         $view->assign('GoogleAnonymizeIp', $config['anonymize_ip']);
