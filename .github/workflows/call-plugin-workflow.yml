@@ -1,0 +1,16 @@
+name: Run plugin workflow
+
+on:
+    pull_request:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+
+jobs:
+
+    call-analyse-workflow:
+        name: Analyse code for SwagGoogle
+        uses: shopware5/docker-images-testing/.github/workflows/php-code-analysis.yml@main
+        with:
+            plugin-name: SwagGoogle
